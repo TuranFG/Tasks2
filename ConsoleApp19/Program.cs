@@ -1,10 +1,12 @@
-﻿namespace ConsoleApp19
+﻿using System;
+
+namespace ConsoleApp19
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            TASK13();
+            TASK15();
         }
 
         static void TASK1()
@@ -229,6 +231,82 @@
             double result = (a + b + c) + ((double)(a + b + c) * 50 / 100);
 
             Console.WriteLine($"Result={result}");
+        }
+
+        static void TASK14()
+        { /*   4 dene eded daxil et. Bunlardan 3 denesi 6 reqemli bir denesi ise 7 reqemli olsun.
+           6 reqemli ededlerin her birinin ilk 3 reqeminden alinan ededleri topla.
+           Neticenin uzerine 7 reqemli ededin son 4 reqeminden alinan ededi gel.
+           Alinan cavabdan cix 7 reqemli ededdin ilk 3 dene reqeminin bir birine vurulmasindan alinan cavabi.
+           Neticenin 60 % tap. Cavabin axirina 60 artir. Neticeden 18% cix. */
+            Console.WriteLine("Enter numbers");
+            int a = Methods.ReadInt32("a: ", 100000, 1000000);
+            int b = Methods.ReadInt32("b: ", 100000, 1000000);
+            int c = Methods.ReadInt32("c: ", 100000, 1000000);
+            int d = Methods.ReadInt32("d: ", 1000000, 10000000);
+
+            int sum = a / 1000 + b / 1000 + c / 1000 + d % 1000;
+
+            d = d / 10000;
+            d = (d % 10) * (d / 10 % 10) * (d / 100);
+            double result = (double)((sum - d) * 60 / 100)*100+60;
+            result = result - result * 18 / 100;
+
+            Console.WriteLine($"Result={result}");
+        }
+
+        static void TASK15()
+        { /*   5 dene eded daxil et. Bunlarda 2 denesi 3 reqemli. 2 denesi 6 reqemli . 
+          1 denesi 7 reqemli olsun. 3 reqemli ededlerin cemini tap ve 
+          cavabin axirdan 2 denesini kvadratini tap. Sonra alinan cavabin ustune 
+          3 reqemli ededlerin bir birine yapishdirilmasindan sonra alinan ededei gel.
+          Cavabdan 7 reqemli ededin son 5 reqemini cix. Alinan neticenin uzerine 
+          6 reqemlilerin ceminden alinan cavabin axirinci 3 dene ededini gel.
+          Neticenin uzerine 7 reqemli ededin reqemleri ceminin tersine duzulmesinden alinan cavabi gel.
+          Cavabin axirina 11 artir. Sonra 7 reqemli ededin tek yerde dayan reqemlerinde alinan ededi cix.
+          Cavabin axirdan II reqemi ile axirinci reqemin arasina 88 elave et. */
+            Console.WriteLine("Enter numbers");
+            int a = Methods.ReadInt32("a: ", 100, 1000);
+            int b = Methods.ReadInt32("b: ", 100, 1000);
+            int c = Methods.ReadInt32("c: ", 100000, 1000000);
+            int d = Methods.ReadInt32("d: ", 100000, 1000000);
+            int e = Methods.ReadInt32("e: ", 1000000, 10000000);
+           
+            int number = (a + b) % 100;
+            number = number * number + (a*1000+b)-e%100000+((c+d)%1000);
+
+            int temp = e;
+            temp = Methods.SumOfNumbers(temp);
+            temp = Methods.RevrseOfNumber(temp);
+
+            number = (number + temp) *100+11;
+
+            int reverse_e = Methods.RevrseOfNumber(e);
+
+            int i = 1;
+            int oddNumber = 0;
+
+            while (reverse_e > 0)
+            {
+                int lastNumber = reverse_e % 10;
+                reverse_e /= 10;
+                if (i % 2 != 0)
+                {
+                    oddNumber = oddNumber * 10 + lastNumber;
+                }
+                i++;
+            }
+
+            number = number - oddNumber;
+
+            Console.WriteLine(number);
+
+            int numberLast = number % 10;
+            number = (number / 10 * 100 + 88)*10 + numberLast;
+
+            Console.WriteLine($"Result={number}");
+
+
         }
 
 

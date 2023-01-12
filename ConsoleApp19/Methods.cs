@@ -37,5 +37,18 @@ namespace ConsoleApp19
             return sum;
         }
 
+        internal static int RevrseOfNumber (int a)
+        {
+            int reverse=0, lastNumber;
+            while (a > 0)
+            {
+                lastNumber = a % 10;
+                reverse=reverse*10+lastNumber;
+                a = a / 10;
+
+            }
+            return reverse;
+        }
+
     }
 }
